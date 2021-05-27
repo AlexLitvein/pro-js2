@@ -24,13 +24,13 @@ header {
   background-color: rgb(228, 223, 245);
 }
 
-.products {
+.goods-list {
   display: flex;
   justify-content: space-around;
-  margin: 20px 0 0 20px;
+  margin: 20px 0 20px 0;
 }
 
-.product-item {
+.goods-item {
 }
 
 .buy-btn {

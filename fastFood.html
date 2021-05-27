@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <form id="foods" action="endpoint">
+      <fieldset>
+        <legend>Размер гамбургера</legend>
+        <input id="szSmall" type="radio" name="size" value="small" /><label for="szSmall">Маленький</label>
+
+        <input id="szBig" type="radio" name="size" value="big" checked /><label for="szBig">Большой</label>
+      </fieldset>
+      <fieldset>
+        <legend>Начинка</legend>
+        <input type="checkbox" value="cheese" />С сыром
+
+        <input type="checkbox" value="salad" />С салатом
+
+        <input type="checkbox" value="potatoes" />С картофелем
+      </fieldset>
+      <fieldset>
+        <legend>Дополнительно</legend>
+        <input type="checkbox" value="seasoning" />Приправа
+
+        <input type="checkbox" value="mayonnaise" />Майонез
+      </fieldset>
+      <button id="calc-btn" type="button">Calc</button>
+      <p id="total"></p>
+    </form>
+    <script src="js/fastFood.js"></script>
+  </body>
+</html>
