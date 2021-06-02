@@ -11,31 +11,25 @@ const foods = {
 function calc() {
   const choiceOut = [];
   const foodsEl = document.querySelector("#foods");
-  const foodsChoice = foodsEl.querySelectorAll("input");
-  // console.log(foodsChoice);
+  const foodsChoice = foodsEl.querySelectorAll("input:checked");
   foodsChoice.forEach((el) => {
-    if(el.checked === true){
-      choiceOut.push(foods[el.value]);
-    }    
+    choiceOut.push(foods[el.value]);
   });
 
   // console.log(choiceOut);
 
-  const oTotal = choiceOut.reduce((acc, next)=>{
+  const oTotal = choiceOut.reduce((acc, next) => {
     return {
       price: acc.price + next.price,
-    calories: acc.calories + next.calories
-  }
+      calories: acc.calories + next.calories,
+    };
   });
 
-  return oTotal;  
+  return oTotal;
 }
 
 const total = document.querySelector("#total");
-document.querySelector("#calc-btn").addEventListener('click', function (e) {
+document.querySelector("#calc-btn").addEventListener("click", function (e) {
   const res = calc();
-  total.innerHTML=`total price: ${res.price}<br> total calories: ${res.calories}`;
+  total.innerHTML = `total price: ${res.price}<br> total calories: ${res.calories}`;
 });
-
-
-

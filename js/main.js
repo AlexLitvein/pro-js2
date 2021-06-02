@@ -1,12 +1,16 @@
-class GoodsItem {
-  constructor(title, price) {
-    this.title = title;
-    this.price = price;
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
+class ProductItem {
+  constructor(product, img = "https://via.placeholder.com/200x150") {
+    this.title = product.product_name;
+    this.price = product.price;
+    this.id = product.id_product;
+    this.img = img;
   }
 
   render() {
-    return `<div class="goods-item">
-    <img src='https://via.placeholder.com/200x150'>
+    return `<div class="product-item" id="${this.id}">
+    <img src="${this.img}" alt="pic">
     <h3>${this.title}</h3>
     <p>${this.price}</p>
     <button class="buy-btn">Купить</button>
@@ -14,53 +18,35 @@ class GoodsItem {
   }
 }
 
-class GoodsList {
-  constructor() {
+class ProductList {
+  constructor(container = ".products") {
+    this.container = document.querySelector(container);
     this.goods = [];
+    this.getProducts().then(data => {
+      this.goods = [...data];
+      this.render();
+    })
   }
-  fetchGoods() {
-    this.goods = [
-      { title: "Shirt", price: 150 },
-      { title: "Socks", price: 50 },
-      { title: "Jacket", price: 350 },
-      { title: "Shoes", price: 250 },
-    ];
+
+  getProducts() {
+    return fetch(`${API}/catalogData.json`)
+      .then(result => result.json())
+      .catch(error => {
+        console.log(error);
+      })
   }
+
   render() {
-    let listHtml = "";
-    this.goods.forEach((good) => {
-      const goodItem = new GoodsItem(good.title, good.price);
-      listHtml += goodItem.render();
-    });
-    document.querySelector(".goods-list").innerHTML = listHtml;
+    for (const product of this.goods) {
+      const prod = new ProductItem(product);
+      this.container.insertAdjacentHTML("beforeend", prod.render());
+    }
   }
 
-  totalPrice() {
-    let res = this.goods.reduce((acc, curr) => {
-      return { price: acc.price + curr.price };
-    });
-    return res.price;
+  getSum() {
+    return this.goods.reduce((acc, curr) => acc + curr.price, 0);
   }
 }
 
-class Cart {
-  constructor() {
-    this.goodsList = [];
-  }
-  addItem() {}
-  reoveItem() {}
-  totalPrice() {}
-  order() {}
-}
-
-class CartItem {
-  constructor() {}
-  getInfo() {}
-  incrementCount() {}
-  decrementCount() {}
-}
-
-const prod = new GoodsList();
-prod.fetchGoods();
-prod.render();
-console.log(prod.totalPrice());
+const prod = new ProductList();
+console.log(prod.getSum());
