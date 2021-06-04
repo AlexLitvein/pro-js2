@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Shop</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -13,9 +13,15 @@
       <button class="btn-cart" type="button">Корзина</button>
     </header>
     <main>
-      <div class="goods-list"></div>
-      <a href="fastFood.html">FastFood</a>
+      <div class="products"></div>
+      <!-- <a href="fastFood.html">FastFood</a> -->
     </main>
     <script src="js/main.js"></script>
+    <script>
+      document.querySelector('.btn-cart').addEventListener('click', function (e) {
+        window.location.href='cart.html'
+      })
+      
+    </script>
   </body>
 </html>

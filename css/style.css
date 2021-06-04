@@ -24,7 +24,7 @@ header {
   background-color: rgb(228, 223, 245);
 }
 
-.goods-list {
+.products {
   display: flex;
   justify-content: space-around;
   margin: 20px 0 20px 0;
@@ -44,4 +44,10 @@ header {
 
 .buy-btn:hover {
   background-color: rgb(116, 107, 145);
+}
+
+.total{
+  height: 100px;
+  background-color: rgb(53, 49, 66);
+  color: white;
 }
